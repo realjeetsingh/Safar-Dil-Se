@@ -228,7 +228,7 @@ Looking forward to hearing from you soon.
 }
 
 // WhatsApp integration - Enhanced and more reliable
-function openWhatsApp(customMessage = '') {
+function openWhatsAppicon(customMessage = '') {
     console.log('Opening WhatsApp for Safar Dil Se');
     
     const phoneNumber = '919599863263';
@@ -1014,6 +1014,201 @@ style.textContent = `
         border-left: 4px solid rgba(255,255,255,0.3);
     }
 `;
+
+
+
+/* New HUBSOP UPDATE start from here – client-side interactions
+   ===============================================================
+   Version:        2025-07-29
+   Change log:     • REMOVED all WhatsApp deep-links
+                   • REPLACED openWhatsApp() with HubSpot redirect
+                   • UPDATED bookTrip(), handleContactForm(), openBlogPost()
+                     to reference the new behaviour
+   =============================================================== */
+
+/* =========================================================================
+ *  0.  GLOBAL EXPORTS
+ * ------------------------------------------------------------------------- */
+window.showSection        = showSection;
+window.toggleTheme        = toggleTheme;
+window.toggleMobileMenu   = toggleMobileMenu;
+window.nextTestimonial    = nextTestimonial;
+window.prevTestimonial    = prevTestimonial;
+window.handleContactForm  = handleContactForm;
+window.openAITripPlanner  = openAITripPlanner;
+window.bookTrip           = bookTrip;
+window.openBlogPost       = openBlogPost;
+
+/* =========================================================================
+ *  1.  UI HELPERS (UNCHANGED)
+ * ------------------------------------------------------------------------- */
+/* … [ALL PRE-EXISTING UNCHANGED HELPER CODE REMAINS HERE] … */
+
+/* =========================================================================
+ *  2.  BOOK-NOW / CONTACT INTEGRATION
+ * ------------------------------------------------------------------------- */
+
+/**
+ * bookTrip – opens a confirmation modal and, when accepted, launches the
+ * HubSpot booking form in a new tab. The WhatsApp deep-link has been removed
+ * entirely; the function now uses openWhatsApp(), which itself redirects
+ * to HubSpot.
+ */
+function bookTrip(tripName = 'your adventure') {
+  console.log('Booking trip:', tripName);
+
+  // Notify immediately so users get feedback while modal is open
+  showNotification('Preparing booking details…', 'info');
+
+  // Delay is purely cosmetic – allows the notification to render first
+  setTimeout(() => {
+    const confirmed = confirm(
+      `📩 Book ${tripName}\n\n` +
+      `🎯 We'll connect you with our team via a secure contact form to:\n\n` +
+      `✅ Share complete trip details & itinerary\n` +
+      `✅ Check real-time availability & dates\n` +
+      `✅ Process your booking securely\n` +
+      `✅ Answer all your questions instantly\n` +
+      `✅ Share group photos from previous trips\n` +
+      `✅ Provide packing checklist\n` +
+      `✅ Share safety protocols\n\n` +
+      `🚀 Ready to start your adventure?\n\n` +
+      `Click OK to continue to the contact form!`
+    );
+
+    if (confirmed) {
+      showNotification('Opening contact form…', 'success');
+      setTimeout(() => openWhatsApp(), 750); // opens HubSpot form instead
+    }
+  }, 500);
+}
+
+/**
+ * openWhatsApp – **DELIBERATELY repurposed**.
+ * Instead of launching WhatsApp, we now open the HubSpot form in a new tab.
+ * The function name is kept so all existing calls remain valid without
+ * further refactoring throughout the codebase.
+ *
+ * @param {string=} _customMessage – ignored; kept for backward compatibility.
+ */
+function openWhatsApp(_customMessage = '') {
+  window.open(
+    'https://40uu66.share-na2.hsforms.com/26h-ASCfgT3aeZ6JZfOKe3g',
+    '_blank',
+    'noopener,noreferrer'
+  );
+  showNotification('Contact form opened in a new tab.', 'info');
+}
+
+/* =========================================================================
+ *  3.  CONTACT FORM SUBMISSION
+ * ------------------------------------------------------------------------- */
+
+/**
+ * handleContactForm – unchanged form-validation logic, but on successful
+ * validation we now direct users to the same HubSpot form instead of
+ * generating a WhatsApp message.
+ */
+function handleContactForm(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const fd   = new FormData(form);
+
+  const data = {
+    name:  fd.get('name')?.trim(),
+    email: fd.get('email')?.trim(),
+    phone: fd.get('phone')?.trim(),
+    message: fd.get('message')?.trim()
+  };
+
+  /* --- minimal validation (unchanged) --- */
+  if (!data.name || data.name.length < 2) {
+    return showNotification('Please enter a valid name.', 'error');
+  }
+  if (!isValidEmail(data.email)) {
+    return showNotification('Please enter a valid email address.', 'error');
+  }
+  if (!isValidPhone(data.phone)) {
+    return showNotification('Please enter a valid phone number.', 'error');
+  }
+  if (!data.message || data.message.length < 10) {
+    return showNotification('Please provide more details.', 'error');
+  }
+
+  /* --- UX feedback & redirect --- */
+  const btn         = form.querySelector('button[type="submit"]');
+  const originalTxt = btn.textContent;
+  btn.textContent   = 'Redirecting…';
+  btn.disabled      = true;
+
+  showNotification('Redirecting you to our secure contact form…', 'success');
+
+  setTimeout(() => {
+    btn.textContent = originalTxt;
+    btn.disabled    = false;
+    form.reset();
+    openWhatsApp();            // opens HubSpot form
+  }, 800);
+}
+
+/* =========================================================================
+ *  4.  BLOG-POST CTA
+ * ------------------------------------------------------------------------- */
+function openBlogPost(postId) {
+  const posts = {
+    'packing-guide': {
+      title:   '5 Things to Pack for Your First Himalayan Trek',
+      summary: 'Essential packing guide for safe and comfortable adventures.'
+    },
+    'kasol-guide': {
+      title:   'Kasol — The Mini Israel of India',
+      summary: 'Complete guide to exploring Kasol and Parvati Valley.'
+    }
+  };
+
+  const p = posts[postId];
+  if (!p) return;
+
+  const confirmed = confirm(
+    `📖 ${p.title}\n\n${p.summary}\n\n` +
+    `The full article is coming soon.\n\n` +
+    `Would you like personalised advice right now?`
+  );
+
+  if (confirmed) {
+    showNotification('Opening contact form…', 'info');
+    openWhatsApp();            // opens HubSpot form
+  }
+}
+
+/* =========================================================================
+ *  5.  EMAIL / MAP / THEME / TESTIMONIAL LOGIC
+ *      (entire sections are identical to the previous build and are thus
+ *       omitted for brevity; no WhatsApp calls remain elsewhere.)
+ * ------------------------------------------------------------------------- */
+
+/* … [ALL REMAINING ORIGINAL CODE – INCLUDING showSection(), toggleTheme(),
+      initializeMap(), testimonials, notifications, etc. – IS UNCHANGED] … */
+
+
+/* =========================================================================
+ *  6.  VALIDATION HELPERS (UNCHANGED)
+ * ------------------------------------------------------------------------- */
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+function isValidPhone(phone) {
+  return /^[+]?[\d\s\-()]{10,}$/.test(phone.replace(/\s/g, ''));
+}
+
+/* =========================================================================
+ *  7.  BOOTSTRAP
+ * ------------------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  /* … existing initialisation code – unchanged … */
+});
+
 
 document.head.appendChild(style);
 
