@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safar Dil Se - Jiyo Khul Ke! | Curated Group Adventures & Soulful Journeys Across India</title>
+    <meta name="description" content="Safar Dil Se offers curated group adventures and soulful journeys across India. Experience Himachal Pradesh, Uttarakhand treks with verified stays, local guides, and safety first approach.">
+    <meta name="keywords" content="travel India, Himachal Pradesh tours, Uttarakhand trekking, group travel, Kasol trips, Tungnath trek, Tirthan Valley, adventure travel, budget travel India">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand" onclick="showSection('home')">
+                <h2>Safar Dil Se</h2>
+                <span class="brand-tagline">Jiyo Khul Ke!</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="javascript:void(0)" class="nav-link active" onclick="showSection('home')">Home</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('about')">About Us</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('trips')">Upcoming Trips</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('testimonials')">Testimonials</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('gallery')">Gallery</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('blog')">Blog</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('contact')">Contact</a>
+                <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            </div>
+            
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section hero-section active">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Safar Dil Se – Jiyo Khul Ke!</h1>
+                <p class="hero-subtitle">Curated Group Adventures & Soulful Journeys Across India</p>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🏔️</div>
+                        <p>Himalayan Adventures</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👥</div>
+                        <p>Group Experiences</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <p>Safety First</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <p>Budget Friendly</p>
+                    </div>
+                </div>
+                
+                <div class="hero-cta">
+                    <button class="btn btn--primary btn--lg" onclick="showSection('trips')">🌄 View Upcoming Trips</button>
+                    <button class="btn btn--secondary btn--lg" onclick="showSection('contact')">📩 Book Your Adventure</button>
+                    <button class="btn btn--outline btn--lg" onclick="showSection('about')">🧭 Our Story</button>
+                </div>
+
+                <div class="ai-trip-planner">
+                    <h3>Plan Your Custom Adventure</h3>
+                    <p>Use our AI Trip Planner to create personalized journeys</p>
+                    <button class="btn btn--accent" onclick="openAITripPlanner()">🌍 AI Trip Planner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Safar Dil Se</h2>
+                <p>Our story, our passion, our commitment to creating unforgettable journeys</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="founder-story">
+                    <div class="founder-info">
+                        <h3>Founded by Jeet & Shubham – Passionate Travelers with a Purpose</h3>
+                        <p class="founder-description">Safar Dil Se is more than just a travel company — it’s a heartfelt initiative born from the love of exploration and community. Founded by Jeet and Shubham, two passionate travelers driven by the idea of creating soulful and memorable experiences, our mission is to make travel accessible, meaningful, and truly unforgettable.
+
+We specialize in curating well-organized, budget-friendly trips for all age groups. Whether you're a young explorer seeking adventure or someone looking for a peaceful escape, we ensure every journey is packed with emotion, discovery, and connection.
+
+Our motto — "Jiyo Khul Ke" — reflects our belief that life should be lived freely, fully, and with joy. Every itinerary, destination, and detail is crafted with that in mind.</p>
+                    </div>
+                </div>
+                
+                <div class="company-mission">
+                    <h3>Our Mission</h3>
+                    <p>To curate soulful, well-organized, and budget-friendly trips for young explorers who want to experience India's most beautiful destinations while forming lifelong friendships and creating unforgettable memories.</p>
+                </div>
+                
+                <div class="why-travel-with-us">
+                    <h3>Why Travel With Us</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎯</div>
+                            <h4>Carefully Curated Destinations</h4>
+                            <p>Hand-picked locations that offer authentic experiences and breathtaking beauty across India's most stunning landscapes</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🤝</div>
+                            <h4>Warm, Friendly Group Environment</h4>
+                            <p>Foster connections and friendships that last long after the journey ends with like-minded adventurers</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💎</div>
+                            <h4>Transparent Pricing</h4>
+                            <p>No hidden costs, clear pricing structure for all our adventure packages with complete value breakdown</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">✅</div>
+                            <h4>Verified Stays, Local Guides, and Safety First</h4>
+                            <p>Thoroughly vetted accommodations, experienced local guides, and comprehensive safety measures for peace of mind</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trips Section -->
+    <section id="trips" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🌍 Upcoming Trips</h2>
+                <p>Adventure awaits! Join our carefully curated journeys across India's most beautiful destinations</p>
+            </div>
+            
+            <div class="trips-grid">
+                <div class="trip-card">
+                    <div class="trip-header">
+                        <h3>📍 Tungnath Trek</h3>
+                        <div class="trip-status coming-soon">Coming Soon</div>
+                    </div>
+                    <div class="trip-amenities">
+                        <span class="amenity">🏕️ Stay</span>
+                        <span class="amenity">🚐 Travel</span>
+                        <span class="amenity">🧭 Guide</span>
+                        <span class="amenity">🔥 Bonfire</span>
+                        <span class="amenity">🏞️ Trekking</span>
+                    </div>
+                    <div class="trip-details">
+                        <div class="trip-detail">
+                            <span class="detail-label">📍 Departure From:</span>
+                            <span class="detail-value">Delhi</span>
+                        </div>
+                        <div class="trip-detail">
+                            <span class="detail-label">📆 Duration:</span>
+                            <span class="detail-value">5 Days / 4 Nights</span>
+                        </div>
+                        <div class="trip-detail">
+                            <span class="detail-label">🏔️ Highlight:</span>
+                            <span class="detail-value">World's Highest Shiva Temple</span>
+                        </div>
+                        <div class="trip-detail">
+                                <span class="detail-label">💰 Price:</span>
+                                <span class="detail-value">Contact for Details</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary btn--full-width trip-book-btn" onclick="bookTrip('Tungnath Trek')">Book Now</button>
+                </div>
+
+                <div class="trip-card">
+                    <div class="trip-header">
+                        <h3>📍 Kasol-Tosh-Manali</h3>
+                        <div class="trip-status available">Available</div>
+                    </div>
+                    <div class="trip-amenities">
+                        <span class="amenity">🏕️ Stay</span>
+                        <span class="amenity">🚐 Travel</span>
+                        <span class="amenity">🧭 Guide</span>
+                        <span class="amenity">🔥 Bonfire</span>
+                        <span class="amenity">👁️ Sightseeing</span>
+                    </div>
+                    <div class="trip-details">
+                        <div class="trip-detail">
+                            <span class="detail-label">📍 Departure From:</span>
+                            <span class="detail-value">Delhi</span>
+                        </div>
+                        <div class="trip-detail">
+                            <span class="detail-label">📆 Duration:</span>
+                            <span class="detail-value">6 Days / 5 Nights</span>
+                        </div>
+                        <div class="trip-detail">
+                            <span class="detail-label">🌲 Highlight:</span>
+                            <span class="detail-value">Hippie Paradise & Adventure Capital</span>
+                        </div>
+                        <div class="trip-detail">
+                                <span class="detail-label">💰 Price:</span>
+                                <span class="detail-value">Contact for Details</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary btn--full-width trip-book-btn" onclick="bookTrip('Kasol–Tosh–Manali')">Book Now</button>
+                </div>
+
+                <div class="trip-card">
+                    <div class="trip-header">
+                        <h3>📍 Tirthan Valley</h3>
+                        <div class="trip-status available">Available</div>
+                    </div>
+                    <div class="trip-amenities">
+                        <span class="amenity">🏕️ Stay</span>
+                        <span class="amenity">🚐 Travel</span>
+                        <span class="amenity">🧭 Guide</span>
+                        <span class="amenity">🎣 Fishing</span>
+                        <span class="amenity">🚶 Nature Walk</span>
+                    </div>
+                    <div class="trip-details">
+                        <div class="trip-detail">
+                            <span class="detail-label">📍 Departure From:</span>
+                            <span class="detail-value">Delhi</span>
+                        </div>
+                        <div class="trip-detail">
+                            <span class="detail-label">📆 Duration:</span>
+                            <span class="detail-value">4 Days / 3 Nights</span>
+                        </div>
+                        <div class="trip-detail">
+                            <span class="detail-label">🌿 Highlight:</span>
+                            <span class="detail-value">Hidden Gem of Himachal</span>
+                        </div>
+                        <div class="trip-detail">
+                                <span class="detail-label">💰 Price:</span>
+                                <span class="detail-value">Contact for Details</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary btn--full-width trip-book-btn" onclick="bookTrip('Tirthan Valley')">Book Now</button>
+                </div>
+            </div>
+
+            <div class="destinations-map-container">
+                <h3>Explore Our Travel Destinations</h3>
+                <p>Interactive map showing our carefully selected destinations across North India</p>
+                <div id="destinations-map" style="height: 400px; position: relative;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>💬 What Our Travelers Say</h2>
+                <p>Real experiences from real adventurers who traveled with us</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-slider" id="testimonial-slider">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"One of the most memorable trips of my life! Safe, well-organized, and so much fun!"</p>
+                        <div class="testimonial-author">
+                            <h4>Aman Sharma</h4>
+                            <p>Kasol Trip</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Made friends for life and memories I'll always cherish. Thanks, Safar Dil Se!"</p>
+                        <div class="testimonial-author">
+                            <h4>Simran Kaur</h4>
+                            <p>Tirthan Trek</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevTestimonial()">‹</button>
+                    <button class="slider-btn" onclick="nextTestimonial()">›</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📸 Gallery</h2>
+                <p>Real moments from our Safars - capturing memories that last a lifetime</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" data-caption="Bonfire Night – Kasol">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-icon">🔥</div>
+                        <div class="gallery-caption">Bonfire Night – Kasol</div>
+                        <div class="gallery-description">Memorable evening around the campfire with fellow adventurers</div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-caption="Tungnath Summit">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-icon">⛰️</div>
+                        <div class="gallery-caption">Tungnath Summit</div>
+                        <div class="gallery-description">Reaching the world's highest Shiva temple</div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-caption="Tirthan Valley Views">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-icon">🌲</div>
+                        <div class="gallery-caption">Tirthan Valley Views</div>
+                        <div class="gallery-description">Pristine nature and crystal clear waters</div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-caption="Group Adventure">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-icon">👥</div>
+                        <div class="gallery-caption">Group Adventure</div>
+                        <div class="gallery-description">Making memories with fellow travelers and new friends</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>✍️ Blog</h2>
+                <p>Travel stories, packing tips, local food guides, and more</p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Latest</span>
+                        <span class="blog-category">Travel Tips</span>
+                    </div>
+                    <h3>5 Things to Pack for Your First Himalayan Trek</h3>
+                    <p>Essential items every first-time trekker should carry for a safe and comfortable Himalayan adventure. From clothing layers to emergency supplies, here's your complete packing guide.</p>
+                    <a href="javascript:void(0)" class="blog-link" onclick="openBlogPost('packing-guide')">Read More →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Recent</span>
+                        <span class="blog-category">Destination Guide</span>
+                    </div>
+                    <h3>Kasol: The Mini Israel of India</h3>
+                    <p>Discover why Kasol has become a favorite destination for travelers seeking peace, adventure, and cultural diversity in the beautiful Parvati Valley of Himachal Pradesh.</p>
+                    <a href="javascript:void(0)" class="blog-link" onclick="openBlogPost('kasol-guide')">Read More →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Popular</span>
+                        <span class="blog-category">Food Guide</span>
+                    </div>
+                    <h3>Local Delicacies to Try in Himachal Pradesh</h3>
+                    <p>A food lover's guide to authentic Himachali cuisine - from Siddu and Thukpa to local herbs and traditional preparations that will tantalize your taste buds.</p>
+                    <a href="javascript:void(0)" class="blog-link" onclick="openBlogPost('food-guide')">Read More →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📞 Contact Us</h2>
+                <p>Ready to travel with your tribe? Get in touch and start your adventure!</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <h4>📞 Phone</h4>
+                            <p><a href="tel:+919599863263">9599863263</a></p>
+                        </div>
+                        <div class="contact-method">
+                            <h4>📧 Email</h4>
+                            <p><a href="mailto:safardilse.jiyokhulke@gmail.com">safardilse.jiyokhulke@gmail.com</a></p>
+                        </div>
+                        <div class="contact-method">
+                            <h4>📱 Instagram</h4>
+                            <p><a href="https://instagram.com/safardilse_2000" target="_blank">@safardilse_2000</a></p>
+                        </div>
+                        <div class="contact-method">
+                            <h4>📍 Location</h4>
+                            <p>Delhi, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-section">
+                    <h3>📩 Ready to Travel with Your Tribe?</h3>
+                    <p>Fill out the form below and we'll get back to you with trip details and availability!</p>
+                    
+                    <!-- HubSpot Form -->
+                    <div id="hubspot-form-container">
+                        <div class="hs-form-loading">
+                            <p>Loading contact form...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Fallback Contact Form -->
+                    <form id="fallback-contact-form" class="contact-form" onsubmit="handleContactForm(event)" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="destination">Preferred Destination</label>
+                            <select id="destination" name="destination" class="form-control">
+                                <option value="">Select Destination</option>
+                                <option value="tungnath">Tungnath Trek</option>
+                                <option value="kasol">Kasol–Tosh–Manali</option>
+                                <option value="tirthan">Tirthan Valley</option>
+                                <option value="custom">Custom Trip</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Tell us about your travel preferences *</label>
+                            <textarea id="message" name="message" class="form-control" rows="4" required placeholder="Tell us about your travel dates, group size, budget, interests, and any special requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <button id="whatsapp-float" class="whatsapp-float" onclick="openWhatsApp()">
+        <span class="whatsapp-icon">💬</span>
+    </button>
+
+    <!-- HubSpot Script -->
+    <script>
+        // HubSpot form loading
+        window.addEventListener('load', function() {
+            const script = document.createElement('script');
+            script.src = 'https://js-na2.hsforms.net/forms/embed/243303486.js';
+            script.onload = function() {
+                if (window.hbspt) {
+                    window.hbspt.forms.create({
+                        region: "na2",
+                        portalId: "243303486",
+                        formId: "887d4be4-ee48-43ca-aab4-450d9ce1bfb7",
+                        target: '#hubspot-form-container'
+                    });
+                }
+            };
+            script.onerror = function() {
+                // Show fallback form if HubSpot fails to load
+                document.getElementById('hubspot-form-container').style.display = 'none';
+                document.getElementById('fallback-contact-form').style.display = 'block';
+            };
+            document.head.appendChild(script);
+            
+            // Fallback timeout
+            setTimeout(function() {
+                const hubspotContainer = document.getElementById('hubspot-form-container');
+                if (hubspotContainer && !hubspotContainer.querySelector('form')) {
+                    hubspotContainer.style.display = 'none';
+                    document.getElementById('fallback-contact-form').style.display = 'block';
+                }
+            }, 5000);
+        });
+    </script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
