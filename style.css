@@ -1023,7 +1023,7 @@ body {
 }
 
 .ai-trip-planner {
-    background: linear-gradient(135deg, var(--color-bg-2), var(--color-bg-6));
+    background: linear-gradient(135deg, #1fb8cd36, rgb(255 255 255 / 15%));
     padding: var(--space-24);
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-card-border);
