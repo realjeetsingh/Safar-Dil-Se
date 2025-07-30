@@ -159,11 +159,11 @@ function closeMobileMenu() {
 function openAITripPlanner() {
     console.log('Opening AI Trip Planner');
     
-    const confirmed = confirm('🌍 AI Trip Planner\n\nThis will open our AI-powered trip planning tool in a new window. Create custom itineraries based on your preferences!\n\n✨ Features:\n• Personalized trip suggestions\n• Budget planning\n• Activity recommendations\n• Weather insights\n\nProceed to AI Trip Planner?');
+    const confirmed = confirm('🌍 Tripztarr - AI Trip Planner\n\nThis will open our AI-powered trip planning tool in a new window. Create custom itineraries based on your preferences!\n\n✨ Features:\n• Personalized trip suggestions\n• Budget planning\n• Activity recommendations\n• Weather insights\n\nProceed to AI Trip Planner?');
     
     if (confirmed) {
         try {
-            const aiPlannerURL = 'https://sample-firebase-ai-app-8a3d8--sample-app-kmjjz9or.web.app/';
+            const aiPlannerURL = 'https://tripztarr-ai.vercel.app/';
             const newWindow = window.open(aiPlannerURL, '_blank', 'noopener,noreferrer');
             
             if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
