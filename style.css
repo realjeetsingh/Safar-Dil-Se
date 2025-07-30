@@ -741,8 +741,8 @@ select.form-control {
 /* Travel-themed color palette and custom styles */
 :root {
   /* Adventure-inspired colors */
-  --color-adventure-orange: #ff6b35;
-  --color-adventure-orange-hover: #e55a2b;
+  --color-adventure-orange: #1aad4a;
+  --color-adventure-orange-hover: #20865e;
   --color-mountain-blue: #2c5f7a;
   --color-mountain-blue-light: #4a8bb8;
   --color-nature-green: #4a7c59;
